@@ -1,0 +1,36 @@
+<form name="search" action="{{ url_for('search_results') }}" method="POST">
+
+    <div class="form-group row">
+
+        <label for="protein" class="col-2 col-form-label">protein</label>
+
+        <div class="col-2">
+            <select class="form-control" id="protein" name="protein">
+                <option>HA</option>
+                <option>NA</option>
+                <option>M1</option>
+                <option>M2</option>
+                <option>NP</option>
+                <option>PA</option>
+                <option>PB1</option>
+                <option>PB2</option>
+                <option>NS1</option>
+                <option>NS2</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+
+        <label for="residue_number" class="col-2 col-form-label">residue number</label>
+        <div class="col-2">
+            <input type="text" class="form-control" id="residue_number" name="residue_number">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">submit</button>
+    </div>
+
+</form>

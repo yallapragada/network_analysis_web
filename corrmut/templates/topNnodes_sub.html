@@ -1,0 +1,23 @@
+{% for key, value in top_25_nodes_dict.items() %}
+    <h2 class="sub-header">top 25 nodes (with top edges) for dataset = {{ key }}</h2>
+    <div class="table-responsive">
+        <table class="table wy-table-bordered">
+            <thead>
+            <tr>
+                <th>HIGHEST_DEGREE_RESIDUES</th>
+                <th>NUM_CONNECTIONS</th>
+                <th>TOP COVARYING RESIDUES</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for result in value %}
+                    <tr>
+                        <td>{{ result['HIGHEST_DEGREE_RESIDUES'] }}</td>
+                        <td>{{ result['NUM_CONNECTIONS'] }}</td>
+                        <td>{{ result['COVARYING_RESIDUES'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endfor %}

@@ -1,0 +1,23 @@
+{% for dataset, top_25_edges in top_25_edges_dict.items() %}
+    <h2 class="sub-header">top 25 edges for dataset = {{ dataset }}</h2>
+    <div class="table-responsive">
+        <table class="table wy-table-bordered">
+            <thead>
+            <tr>
+                <th>SOURCE PROTEIN, RESIDUE</th>
+                <th>TARGET PROTEIN, RESIDUE</th>
+                <th>MIC</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for top_25_edge in top_25_edges %}
+                    <tr>
+                        <td>{{ top_25_edge['SOURCE'] }}</td>
+                        <td>{{ top_25_edge['TARGET'] }}</td>
+                        <td>{{ top_25_edge['MIC'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endfor %}

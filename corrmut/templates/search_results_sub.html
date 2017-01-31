@@ -1,0 +1,61 @@
+<form name="search" action="{{ url_for('search_results') }}" method="POST">
+
+    <div class="form-group row">
+
+        <label for="protein" class="col-2 col-form-label">protein</label>
+
+        <div class="col-2">
+            <select class="form-control" id="protein" name="protein">
+                <option>HA</option>
+                <option>NA</option>
+                <option>M1</option>
+                <option>M2</option>
+                <option>NP</option>
+                <option>PA</option>
+                <option>PB1</option>
+                <option>PB2</option>
+                <option>NS1</option>
+                <option>NS2</option>
+            </select>
+        </div>
+
+    </div>
+
+    <div class="form-group row">
+
+        <label for="residue_number" class="col-2 col-form-label">residue number</label>
+        <div class="col-2">
+            <input type="text" class="form-control" id="residue_number" name="residue_number">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary">submit</button>
+    </div>
+
+</form>
+
+{% for dataset, top_10_edges in top_10_edges_dict.items() if top_10_edges %}
+<h2 class="sub-header">top 10 edges for dataset = {{ dataset }}, protein = {{ protein }}, residue_number = {{
+    residue_number }}</h2>
+<div class="table-responsive">
+    <table class="table wy-table-bordered">
+        <thead>
+        <tr>
+            <th>SOURCE PROTEIN, RESIDUE</th>
+            <th>TARGET PROTEIN, RESIDUE</th>
+            <th>MIC</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for top_10_edge in top_10_edges %}
+        <tr>
+            <td>{{ top_10_edge['SOURCE'] }}</td>
+            <td>{{ top_10_edge['TARGET'] }}</td>
+            <td>{{ top_10_edge['MIC'] }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endfor %}
