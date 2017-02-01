@@ -1,0 +1,29 @@
+{% for key, value in top40_triplets_dict.items() %}
+    <h2 class="sub-header">topN triplets for dataset = {{ key }}</h2>
+    <div class="table-responsive">
+        <table class="table wy-table-bordered">
+            <thead>
+            <tr>
+                <th>A</th>
+                <th>B</th>
+                <th>C</th>
+                <th>AB</th>
+                <th>BC</th>
+                <th>CA</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for result in value %}
+                    <tr>
+                        <td>{{ result['A'] }}</td>
+                        <td>{{ result['B'] }}</td>
+                        <td>{{ result['C'] }}</td>
+                        <td>{{ result['AB'] }}</td>
+                        <td>{{ result['BC'] }}</td>
+                        <td>{{ result['CA'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endfor %}
