@@ -52,3 +52,12 @@ def topN_nodes():
         top_25_nodes = model.get_topN_nodes_with_topM_edges(25, 10, dataset=dataset, cutoff=0.1)
         top_25_nodes_dict[dataset] = top_25_nodes
     return render_template('topNnodes.html', top_25_nodes_dict=top_25_nodes_dict)
+
+@app.route('/topN_triplets', methods=['GET', 'POST'])
+def topN_triplets():
+    top40_triplets_dict = {}
+    datasets = model.get_datasets()
+    for dataset in datasets:
+        top_40_triplets = model.get_topN_triplets(dataset=dataset)
+        top40_triplets_dict[dataset] = top_40_triplets
+    return render_template('topNtriplets.html', top40_triplets_dict=top40_triplets_dict)
