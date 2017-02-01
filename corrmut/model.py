@@ -6,7 +6,7 @@ import csv
 
 # get handle to local neo4j instance
 def get_connection_to_neo4j():
-    graph = Graph(password='flu')
+    graph = Graph(password='xxx')
     return graph
 
 DATASETS_CSV='C:\\Users\\uday\\pycharm_projects\\network_analysis_web\\corrmut\\datasets.csv'
@@ -15,7 +15,7 @@ datasets_csv = open(DATASETS_CSV)
 
 def read_datasets_csv():
     lines = csv.reader(datasets_csv)
-    datasets=[]
+    datasets = []
     for line in lines:
         dataset={}
         dataset['name']=line[0]
@@ -158,6 +158,30 @@ def search(protein, residue_number, dataset):
     results = graph.data(query, protein=protein, residue_number=residue_number)
     return results
 
+def get_topN_triplets(dataset):
+    query_part1 = 'MATCH (n:' + dataset
+    query_part2 = ''')-[r1]->(m)
+    WITH distinct n, m, r1
+    order by r1.mic desc
+    LIMIT 10
+
+    MATCH (m)-[r2]-(p)
+    with distinct n, m, p, r1, r2
+
+    MATCH (p)-[r3]-(n)
+    return distinct
+    n.protein + ' ' + n.residue_number as A,
+    m.protein + ' ' + m.residue_number as B,
+    p.protein + ' ' + p.residue_number as C,
+    r1.mic as AB, r2.mic as BC, r3.mic as CA,
+    toFloat(r1.mic) + toFloat(r2.mic) + toFloat(r3.mic) as total_mic
+    order by total_mic desc
+    LIMIT 40
+    '''
+
+    query = query_part1 + query_part2
+    results = graph.data(query)
+    return results
 
 if __name__ == '__main__':
     search('HA', '100', 'AVIAN_H5_ALL')
