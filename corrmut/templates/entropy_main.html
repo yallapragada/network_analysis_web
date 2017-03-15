@@ -8,7 +8,7 @@
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('edge_counts') }}">edge counts</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('topN_nodes') }}">topN nodes</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('topN_edges') }}">topN edges</a></li>
-                <li class="nav-item"><a class="nav-link active" href="{{ url_for('topN_triplets') }}">topN triplets</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('topN_triplets') }}">topN triplets</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('search') }}">search</a></li>
                 <li class="nav-item"><a class="navbar-text">           </a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('dviz') }}">iviz</a></li>
@@ -16,11 +16,11 @@
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('mic') }}">mic</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('degree_dist') }}">degree_dist</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ url_for('clustering_dist') }}">clustering_dist</a></li>
-                <li class="nav-item"><a class="nav-link" href="{{ url_for('entropy') }}">entropy</a></li>
+                <li class="nav-item"><a class="nav-link active" href="{{ url_for('entropy') }}">entropy</a></li>
             </ul>
         </nav>
         <div class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-            {% include "topNtriplets_sub.html" %}
+            {% include "entropy_sub.html" %}
         </div>
     </div>
 </div>

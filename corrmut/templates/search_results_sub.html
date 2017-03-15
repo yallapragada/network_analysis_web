@@ -29,13 +29,28 @@
         </div>
     </div>
 
+    <div class="form-group row">
+        <label for="dataset" class="col-2 col-form-label">dataset</label>
+        <div class="col-2">
+            <select class="form-control" id="dataset" name="dataset">
+                <option value="H1N1_HUMAN_ALL">HUMAN_H1N1_ALL</option>
+                <option value="SWINE_H1N1_ALL">SWINE_H1N1_ALL</option>
+                <option value="H3N2_HUMAN_ALL">HUMAN_H3N2_ALL</option>
+                <option value="SWINE_H3N2_ALL">SWINE_H3N2_ALL</option>
+                <option value="AVIAN_H5_ALL">AVIAN_H5_ALL</option>
+                <option value="H7N9_ALL">H7N9_ALL</option>
+                <option value="HUMAN_ALL">HUMAN_ALL</option>
+            </select>
+        </div>
+    </div>
+
     <div class="form-group">
         <button type="submit" class="btn btn-primary">submit</button>
     </div>
 
 </form>
 
-{% for dataset, top_10_edges in top_10_edges_dict.items() if top_10_edges %}
+{% if top_10_edges %}
 <h2 class="sub-header">top 10 edges for dataset = {{ dataset }}, protein = {{ protein }}, residue_number = {{
     residue_number }}</h2>
 <div class="table-responsive">
@@ -58,4 +73,6 @@
         </tbody>
     </table>
 </div>
-{% endfor %}
+{% else %}
+    <p class="lead"><em>{{ protein }} - {{ residue_number }} is not in {{ dataset }} network </em></p>
+{% endif %}
